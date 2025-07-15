@@ -2,18 +2,17 @@ import { useState } from "react";
 import "./App.css";
 import { Navigation } from "./components/Navigation/Navigation";
 import { Tabs } from "./components/Navigation/Tabs";
-
-const INITIAL_TAB = Object.keys(Tabs)[0];
+import { TodoForm } from "./components/TodoForm/TodoForm";
 
 export const App = () => {
-	const [activeTab, setActiveTab] = useState(INITIAL_TAB);
+	const [activeTab, setActiveTab] = useState(Tabs.TODOS);
 
 	return (
 		<div className="app-container">
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
 			<h1 className="app-title">♻Mi lista de tareas</h1>
 
-			<p>Pestaña activa {activeTab}</p>
+			{activeTab === Tabs.NEW_TODOS && <TodoForm />}
 		</div>
 	);
 };
