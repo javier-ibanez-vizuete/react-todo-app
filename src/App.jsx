@@ -6,13 +6,20 @@ import { TodoForm } from "./components/TodoForm/TodoForm";
 
 export const App = () => {
 	const [activeTab, setActiveTab] = useState(Tabs.TODOS);
+	const [todos, setTodos] = useState([]);
+
+	const addTodo = (newTodo) => setTodos((prev) => [...prev, newTodo]);
 
 	return (
 		<div className="app-container">
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
 			<h1 className="app-title">♻Mi lista de tareas</h1>
 
-			{activeTab === Tabs.NEW_TODOS && <TodoForm />}
+			{activeTab === Tabs.TODOS && <h2>Pestaña: Todos</h2>}
+
+			{activeTab === Tabs.FAVORITES && <h2>Pestaña: FAvoritos</h2>}
+
+			{activeTab === Tabs.NEW_TODOS && <TodoForm addTodo={addTodo} />}
 		</div>
 	);
 };
