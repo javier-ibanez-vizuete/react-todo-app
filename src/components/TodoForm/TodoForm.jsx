@@ -1,9 +1,9 @@
 import { useState } from "react";
-import './TodoForm.css'
+import "./TodoForm.css";
 
 const INITIAL_FORM_STATE = { todoText: "" };
 
-export const TodoForm = () => {
+export const TodoForm = ({ addTodo }) => {
 	const [form, setForm] = useState(INITIAL_FORM_STATE);
 
 	const onFormSubmit = (event) => {
@@ -19,6 +19,8 @@ export const TodoForm = () => {
 			id: Date.now(),
 		};
 
+		console.log("formulario enviado", newTodo);
+		addTodo(newTodo);
 		setForm(INITIAL_FORM_STATE);
 	};
 
