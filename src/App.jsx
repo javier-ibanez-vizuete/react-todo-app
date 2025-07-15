@@ -56,9 +56,19 @@ export const App = () => {
 
 	const addTodo = (newTodo) => setTodos((prev) => [...prev, newTodo]);
 
-	const toggleTodo = (id) => {
+	const onToggleTodo = (id) => {
 		const updateTodos = todos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo));
 		setTodos(updateTodos);
+	};
+
+	const onToggleFavorite = (id) => {
+		const updateTodos = todos.map((todo) => (todo.id === id ? { ...todo, favorite: !todo.favorite } : todo));
+		setTodos(updateTodos);
+	};
+
+	const onDeleteTodo = (id) => {
+		const filteredTodo = todos.filter((todo) => todo.id !== id);
+		setTodos(filteredTodo);
 	};
 
 	return (
@@ -66,7 +76,14 @@ export const App = () => {
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
 			<h1 className="app-title">♻Mi lista de tareas</h1>
 
-			{activeTab === Tabs.TODOS && <TodoList todos={todos} toggleTodo={toggleTodo} />}
+			{activeTab === Tabs.TODOS && (
+				<TodoList
+					todos={todos}
+					onToggleTodo={onToggleTodo}
+					onDeleteTodo={onDeleteTodo}
+					onToggleFavorite={onToggleFavorite}
+				/>
+			)}
 
 			{activeTab === Tabs.FAVORITES && <h2>Pestaña: FAvoritos</h2>}
 
