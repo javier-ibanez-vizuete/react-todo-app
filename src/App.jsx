@@ -56,12 +56,17 @@ export const App = () => {
 
 	const addTodo = (newTodo) => setTodos((prev) => [...prev, newTodo]);
 
+	const toggleTodo = (id) => {
+		const updateTodos = todos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo));
+		setTodos(updateTodos);
+	};
+
 	return (
 		<div className="app-container">
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
 			<h1 className="app-title">♻Mi lista de tareas</h1>
 
-			{activeTab === Tabs.TODOS && <TodoList todos={todos} />}
+			{activeTab === Tabs.TODOS && <TodoList todos={todos} toggleTodo={toggleTodo} />}
 
 			{activeTab === Tabs.FAVORITES && <h2>Pestaña: FAvoritos</h2>}
 
