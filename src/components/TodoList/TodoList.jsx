@@ -1,7 +1,8 @@
+import { ResetApp } from "../ResetApp/ResetApp";
 import { TodoItem } from "../TodoItem/TodoItem";
 import "./TodoList.css";
 
-export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, onToggleFavorite }) => {
+export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, onToggleFavorite, onResetApp }) => {
 	console.log(todos);
 
 	return (
@@ -19,6 +20,8 @@ export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, onToggleFavorite }
 					onToggleFavorite={onToggleFavorite}
 				/>
 			))}
+
+			{todos?.length > 0 && <ResetApp onResetApp={onResetApp} />}
 		</div>
 	);
 };
