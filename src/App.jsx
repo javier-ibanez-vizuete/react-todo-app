@@ -90,6 +90,12 @@ export const App = () => {
 		setTodos([]);
 	};
 
+	const onResetFavorites = () => {
+		const updateTodos = todos.map((todo) => ({ ...todo, favorite: false }));
+		setTodos(updateTodos);
+		storage.save(STORAGE_TODOS_KEY, updateTodos);
+	};
+
 	return (
 		<div className="app-container">
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -112,6 +118,7 @@ export const App = () => {
 					onDeleteTodo={onDeleteTodo}
 					onToggleFavorite={onToggleFavorite}
 					onResetApp={onResetApp}
+					onResetFavorites={onResetFavorites}
 				/>
 			)}
 
