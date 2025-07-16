@@ -1,8 +1,9 @@
 import { ResetApp } from "../ResetApp/ResetApp";
+import { ResetFavorites } from "../ResetFavorites/ResetFavorites";
 import { TodoItem } from "../TodoItem/TodoItem";
 import "./Favorites.css";
 
-export const Favorites = ({ todos, onToggleTodo, onDeleteTodo, onToggleFavorite, onResetApp }) => {
+export const Favorites = ({ todos, onToggleTodo, onDeleteTodo, onToggleFavorite, onResetApp, onResetFavorites }) => {
 	const favorites = todos.filter((todo) => todo.favorite);
 
 	return (
@@ -22,6 +23,7 @@ export const Favorites = ({ todos, onToggleTodo, onDeleteTodo, onToggleFavorite,
 			))}
 
 			{favorites?.length > 0 && <ResetApp onResetApp={onResetApp} />}
+			{favorites?.length > 0 && <ResetFavorites onResetFavorites={onResetFavorites} />}
 		</div>
 	);
 };
