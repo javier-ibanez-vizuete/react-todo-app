@@ -1,6 +1,7 @@
+import { TodoItem } from "../TodoItem/TodoItem";
 import "./TodoList.css";
 
-export const TodoList = ({ todos }) => {
+export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, onToggleFavorite }) => {
 	console.log(todos);
 
 	return (
@@ -10,9 +11,13 @@ export const TodoList = ({ todos }) => {
 			{!todos?.length && <p className="todo-list-empty">No hay tareas que mostrar</p>}
 
 			{todos.map((todo) => (
-				<div className="todo" key={todo.id}>
-					{todo.text}
-				</div>
+				<TodoItem
+					key={todo.id}
+					todo={todo}
+					onToggleTodo={onToggleTodo}
+					onDeleteTodo={onDeleteTodo}
+					onToggleFavorite={onToggleFavorite}
+				/>
 			))}
 		</div>
 	);

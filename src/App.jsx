@@ -4,6 +4,7 @@ import { Navigation } from "./components/Navigation/Navigation";
 import { Tabs } from "./components/Navigation/Tabs";
 import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
+import { Favorites } from "./components/Favorites/Favorites";
 
 const INITIAL_TODOS = [
 	{
@@ -56,14 +57,43 @@ export const App = () => {
 
 	const addTodo = (newTodo) => setTodos((prev) => [...prev, newTodo]);
 
+	const onToggleTodo = (id) => {
+		const updateTodos = todos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo));
+		setTodos(updateTodos);
+	};
+
+	const onToggleFavorite = (id) => {
+		const updateTodos = todos.map((todo) => (todo.id === id ? { ...todo, favorite: !todo.favorite } : todo));
+		setTodos(updateTodos);
+	};
+
+	const onDeleteTodo = (id) => {
+		const filteredTodo = todos.filter((todo) => todo.id !== id);
+		setTodos(filteredTodo);
+	};
+
 	return (
 		<div className="app-container">
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
 			<h1 className="app-title">♻Mi lista de tareas</h1>
 
-			{activeTab === Tabs.TODOS && <TodoList todos={todos} />}
+			{activeTab === Tabs.TODOS && (
+				<TodoList
+					todos={todos}
+					onToggleTodo={onToggleTodo}
+					onDeleteTodo={onDeleteTodo}
+					onToggleFavorite={onToggleFavorite}
+				/>
+			)}
 
-			{activeTab === Tabs.FAVORITES && <h2>Pestaña: FAvoritos</h2>}
+			{activeTab === Tabs.FAVORITES && (
+				<Favorites
+					todos={todos}
+					onToggleTodo={onToggleTodo}
+					onDeleteTodo={onDeleteTodo}
+					onToggleFavorite={onToggleFavorite}
+				/>
+			)}
 
 			{activeTab === Tabs.NEW_TODOS && <TodoForm addTodo={addTodo} />}
 		</div>
