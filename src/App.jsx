@@ -6,7 +6,6 @@ import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import { Favorites } from "./components/Favorites/Favorites";
 import { storage } from "./helpers/storage";
-import { ResetApp } from "./components/ResetApp/ResetApp";
 
 const STORAGE_TODOS_KEY = "todos";
 
