@@ -6,6 +6,7 @@ import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import { Favorites } from "./components/Favorites/Favorites";
 import { storage } from "./helpers/storage";
+import { ResetApp } from "./components/ResetApp/ResetApp";
 
 const STORAGE_TODOS_KEY = "todos";
 
@@ -85,6 +86,11 @@ export const App = () => {
 		storage.save(STORAGE_TODOS_KEY, filteredTodo);
 	};
 
+	const onResetApp = () => {
+		storage.remove(STORAGE_TODOS_KEY);
+		setTodos([]);
+	};
+
 	return (
 		<div className="app-container">
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -96,6 +102,7 @@ export const App = () => {
 					onToggleTodo={onToggleTodo}
 					onDeleteTodo={onDeleteTodo}
 					onToggleFavorite={onToggleFavorite}
+					onResetApp={onResetApp}
 				/>
 			)}
 
@@ -105,6 +112,7 @@ export const App = () => {
 					onToggleTodo={onToggleTodo}
 					onDeleteTodo={onDeleteTodo}
 					onToggleFavorite={onToggleFavorite}
+					onResetApp={onResetApp}
 				/>
 			)}
 
